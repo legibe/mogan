@@ -1,11 +1,3 @@
-import time
-import logging
-from zapi import GetError
-
-
-FORMAT = '%(asctime)-15s %(message)s'
-logging.basicConfig(level=logging.INFO, format=FORMAT)
-logger = logging.getLogger(__name__)
 
 
 class ZuoraObject(dict):
