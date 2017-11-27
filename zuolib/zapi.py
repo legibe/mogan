@@ -2,6 +2,14 @@ import json
 import requests
 
 
+"""
+Only one error Exception, build like the HTTPError exception,
+if has a member called code, holding the http error (int).
+One is raise every time the status code returned by Zuora
+is greater or equal to 300.
+"""
+
+
 class ZAPIError(Exception):
 
     def __init__(self, code, msg):
@@ -9,11 +17,31 @@ class ZAPIError(Exception):
         self.code = code
 
 
+"""
+The API wrapper, to hide some details and provide a consistent logic
+in handling exceptions. To build a session object (ZAPI) provide a 
+config argument with the following compulsory fields:
+{
+    'header': {
+        'content-type': defaults to 'application/json',
+        'apiAccessKeyId': API user name,
+        'apiSecretAccessKey': password,
+    },
+    'base_url': the right url for the type of tenant accessed
+    # at the time of writing:
+    # -- https://rest.apisandbox.zuora.com/v1 for sandboxes
+    # -- https://rest.pt1.zuora.com/v1 for performance environments
+}
+"""
+
+
 class ZAPI(object):
 
     def __init__(self, config, entity=None, **kwargs):
         self._entity = entity
         self._header = dict(config['header'], **kwargs)
+        if 'content-type' not in config['header']:
+            self._header['content-type'] = 'application/json'
         self._base = config['base_url'] + '/%s'
         
     def header(self):
