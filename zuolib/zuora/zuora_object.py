@@ -5,7 +5,7 @@ It implemented CRUD operations with a double meaning creator:
 - create from data
 To create an instance of the class:
 - ZuoraObject('12345678') reads an object with Id='12345678'
-- ZuoraObject(field1=a, field2=b, field3=c, etc...) attempts
+- ZuoraObject(field1=a, field2=b, field3=c, etc...) attempts to
   create an object initialised with the field values.
 """
 
@@ -13,16 +13,14 @@ To create an instance of the class:
 class ZuoraObject(dict):
 
     """
-        give us a change of override when the actual class name
+        gives us a chance of override, when the actual class name
         cannot be used for the equivalent class in the library
         default behaviour: use the current class name.
     """
-    class_name = None
+    _class_name = None
 
     def __init__(self, session, identifier, **kwargs):
         super(ZuoraObject, self).__init__()
-        if self.class_name is None:
-            self.class_name = self.__class__.__name__
         self._session = session
         if identifier is None:
             self.create(**kwargs)
@@ -35,7 +33,7 @@ class ZuoraObject(dict):
         return None
 
     def create(self, **kwargs):
-        self._session.create_object(self.class_name, **kwargs)
+        self._session.create_object(self.class_name(), **kwargs)
         # the previous raises an exception if something went wrong
         # so the following code is not executed in that case, that
         # the object keeps empty.
@@ -43,7 +41,7 @@ class ZuoraObject(dict):
             self[k] = i
 
     def read(self, identifier):
-        result = self._session.get_object(identifier, 'object/%s' % self.class_name)
+        result = self._session.get_object(identifier, 'object/%s' % self._class_name())
         # the previous raises an exception if something went wrong
         # so the following code is not executed in that case, that
         # the object keeps empty.
@@ -60,6 +58,11 @@ class ZuoraObject(dict):
 
     def delete(self):
         self._session.update_object(self.id())
-        # when deleted, we want an empty object
-        self.clear()
+        # when deleted
+
+    @classmethod
+    def class_name(cls):
+        if cls._class_name is None:
+            cls._class_name = cls.__class__.__name_
+        return cls._class_name
 

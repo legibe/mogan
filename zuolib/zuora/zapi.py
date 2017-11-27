@@ -31,6 +31,7 @@ config argument with the following compulsory fields:
     # at the time of writing:
     # -- https://rest.apisandbox.zuora.com/v1 for sandboxes
     # -- https://rest.pt1.zuora.com/v1 for performance environments
+    # -- https://api.zuora.com/rest/v1/ for production
 }
 """
 
