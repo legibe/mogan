@@ -1,5 +1,5 @@
 import unittest
-from tools.date import Date, Day, Month, Year, Hour, Minute, Second
+from tools.date import Date, Day, Month, Year, Hour, Minute, Second, DateIncrement
 
 
 class TestDate(unittest.TestCase):
@@ -268,6 +268,17 @@ class TestDate(unittest.TestCase):
         d = Month('2014-11')
         d += 2
         self.assertEqual(d.year_int(), 2015)
+
+    def test_one_second_to_new_year(self):
+        d = Date('2017-12-31 23:59:59')
+        d += 1
+        self.assertEqual(str(d), '2018-01-01 00:00:00')
+
+    def test_date_increment(self):
+        date = Date(self.build_date())
+        increment = DateIncrement(years=1, months=1, days=1, hours=1, minutes=1, seconds=1)    
+        date += increment
+        self.assertEqual(str(date), '2018-05-28 18:51:06')
 
 
 if __name__ == '__main__':
