@@ -148,13 +148,24 @@ class CoreDate(object):
 
     def hour(self):
         return "%02d" % self.date.hour
-    time = hour
 
-    def minute(self):
-        return "%02d" % self.date.minute
+    def year_int(self):
+        return self.date.year
 
-    def second(self):
-        return "%02d" % self.date.second
+    def month_int(self):
+        return self.date.month
+
+    def day_int(self):
+        return self.date.day
+
+    def hour_int(self):
+        return self.date.hour
+
+    def minute_int(self):
+        return self.date.minute
+
+    def second_int(self):
+        return self.date.second
 
     def int_value(self):
         return int(re.sub(CoreDate.no_separators, '', self.__str__()))
