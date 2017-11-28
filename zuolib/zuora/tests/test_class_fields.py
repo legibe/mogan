@@ -1,5 +1,4 @@
 import unittest
-import setup_tests
 from zuora.yaml_credentials import YAMLCredentials
 from zuora.zapi import ZAPI, ZAPIError
 from zuora.class_fields import ClassFields

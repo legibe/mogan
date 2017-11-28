@@ -2,4 +2,4 @@
 # Author: Claude Gibert
 #
 # --------------------------------------------------------------------------------
-import language.jsonreader
+import tools.language.jsonreader

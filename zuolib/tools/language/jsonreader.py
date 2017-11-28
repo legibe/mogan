@@ -4,7 +4,7 @@
 # --------------------------------------------------------------------------------
 import json
 
-from .schemareader import SchemaReader
+from .schema_reader import SchemaReader
 
 
 class JSONReader(object):
