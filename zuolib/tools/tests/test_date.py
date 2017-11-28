@@ -245,6 +245,29 @@ class TestDate(unittest.TestCase):
         d = Second(date)
         d -= 5
 
+    # ------------------------------------------------------------
+    # Some special cases
+    # ------------------------------------------------------------
+    def test_leap_year(self):
+        d = Day(Date('2012-02-28'))
+        new_date = d + 5
+        self.assertEqual(str(new_date), '2012-03-04')
+        d = Day(Date('2012-03-03'))
+        new_date = d - 63
+        self.assertEqual(str(new_date), '2011-12-31')
+
+    def test_non_leap_year(self):
+        d = Day(Date('2013-02-28'))
+        new_date = d + 5
+        self.assertEqual(str(new_date), '2013-03-05')
+        d = Day(Date('2013-03-03'))
+        new_date = d - 63
+        self.assertEqual(str(new_date), '2012-12-30')
+
+    def test_change_of_year(self):
+        d = Month('2014-11')
+        d += 2
+        self.assertEqual(d.year_int(), 2015)
 
 
 if __name__ == '__main__':
