@@ -5,6 +5,22 @@
 import re
 
 
+def is_list(a):
+    return type(a) == list or type(a) == tuple
+
+
+def to_list(a):
+    if not is_list(a):
+        a = [a]
+    return a
+
+
+def no_list(a):
+    if is_list(a):
+        a = a[0]
+    return a
+
+
 def time_in_seconds(s):
     """
     :param s: a string, for example 12, 12mn, 4h, 4hours, 2 days etc...
