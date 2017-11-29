@@ -1,4 +1,4 @@
-from zuora_object import ZuoraObject
+from .zuora_object import ZuoraObject
 import logging
 
 logging.basicConfig(level=logging.INFO)

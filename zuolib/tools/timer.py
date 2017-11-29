@@ -14,7 +14,7 @@ import timeit
 # --------------------------------------------------------------
 
 
-class ContextTimer(object):
+class Timer(object):
 
     def __init__(self):
         self._elapsed = 0.0
