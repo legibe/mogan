@@ -1,7 +1,7 @@
 import unittest
-from zuora.yaml_credentials import YAMLCredentials
-from zuora.zapi import ZAPI, ZAPIError
-from zuora.class_fields import ClassFields
+from zuolib.zuora.yaml_credentials import YAMLCredentials
+from zuolib.zuora.zapi import ZAPI, ZAPIError
+from zuolib.zuora.class_fields import ClassFields
 
 
 class TestClassFields(unittest.TestCase):
