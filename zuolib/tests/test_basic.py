@@ -1,10 +1,13 @@
 import unittest
-from zuolib.tools.basic import time_in_seconds
+from zuolib.tools.basic import time_in_seconds, big_number, big_number_short
 
 
 class TestBasic(unittest.TestCase):
 
-
+    # ------------------------------------------------------------
+    # time_in_seconds. Split into different methods to help
+    # locate the error quickly.
+    # ------------------------------------------------------------
     duration = [
         ('10s', 10),
         ('10 s', 10),
@@ -140,7 +143,57 @@ class TestBasic(unittest.TestCase):
     def test_time_in_seconds25(self):
             self.evaluate(25)
 
+    # ------------------------------------------------------------
+    # Big Number
+    # ------------------------------------------------------------
+    def test_big_number_thousand(self):
+        self.assertEqual(big_number(3000), '3,000')
 
+    def test_big_number_thousand_float(self):
+        self.assertEqual(big_number(3000.12), '3,000.12')
+
+    def test_big_number_million(self):
+        self.assertEqual(big_number(1756342), '1,756,342')
+
+    def test_big_number_million_float(self):
+        self.assertEqual(big_number(1756342.25), '1,756,342.25')
+
+    def test_big_number_billion(self):
+        self.assertEqual(big_number(1756342498), '1,756,342,498')
+
+    def test_big_number_billion_float(self):
+        self.assertEqual(big_number(1756342498.999), '1,756,342,498.999')
+
+    # ------------------------------------------------------------
+    # Big Number Short
+    # ------------------------------------------------------------
+    def test_big_number_short_thousand(self):
+        self.assertEqual(big_number_short(3000), '3K')
+
+    def test_big_number_short_thousand_half(self):
+        self.assertEqual(big_number_short(3500), '3.5K')
+        
+    def test_big_number_short_thousand_decimal(self):
+        self.assertEqual(big_number_short(3542), '3.542K')
+
+    def test_big_number_short_million(self):
+        self.assertEqual(big_number_short(2000000), '2M')
+
+    def test_big_number_short_million_half(self):
+        self.assertEqual(big_number_short(2500000), '2.5M')
+        
+    def test_big_number_short_million_decimal(self):
+        self.assertEqual(big_number_short(2546712), '2.546712M')
+
+    def test_big_number_short_billion(self):
+        self.assertEqual(big_number_short(2000000000), '2B')
+
+    def test_big_number_short_billion_half(self):
+        self.assertEqual(big_number_short(2500000000), '2.5B')
+        
+    def test_big_number_short_billion_decimal(self):
+        self.assertEqual(big_number_short(2500436000), '2.500436B')
+        
 
 if __name__ == '__main__':
     unittest.main()
