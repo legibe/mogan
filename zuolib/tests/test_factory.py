@@ -1,6 +1,6 @@
 import unittest
 import time
-from zuolib.tools.factory import create_factory
+from ..tools.factory import create_factory
 
 
 class TestFactory(unittest.TestCase):
@@ -24,9 +24,9 @@ class TestFactory(unittest.TestCase):
         return internal
 
     def test_create_factory(self):
-        factory = create_factory('Testing1')
+        create_factory('Testing1')
         try:
-            from zuolib.tools.factory import Testing1Factory
+            from ..tools.factory import Testing1Factory
         except ModuleNotFoundError:
             self.fail('factory was not added to the module')
 
@@ -53,7 +53,7 @@ class TestFactory(unittest.TestCase):
         action = factory.create('class2')
         self.assertEqual(action(), '2')
         with self.assertRaises(IndexError):
-            action = factory.create('unknown')
+            factory.create('unknown')
 
     def test_is_registered(self):
         factory = create_factory('Testing2')
@@ -71,6 +71,7 @@ class TestFactory(unittest.TestCase):
         factory.register_default(self.class_default)
 
         self.assertEqual(factory.registered(), {'class1', 'class2'})
+
 
 if __name__ == '__main__':
     unittest.main()

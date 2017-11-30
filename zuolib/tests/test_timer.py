@@ -1,6 +1,6 @@
 import unittest
 import time
-from zuolib.tools.timer import Timer
+from ..tools.timer import Timer
 
 
 class TestTimer(unittest.TestCase):
@@ -12,6 +12,7 @@ class TestTimer(unittest.TestCase):
             self.assertLessEqual(t.snapshot() - delay, 0.1)
             time.sleep(delay)
         self.assertLessEqual(t() - 2*delay, 0.1)
+
 
 if __name__ == '__main__':
     unittest.main()
