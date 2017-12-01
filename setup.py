@@ -1,13 +1,13 @@
 from setuptools import setup
 
-setup(name='zuolib',
+setup(name='mogan',
       version='0.1',
       description='Wrapper Zuora API wrapper with goodies',
-      url='http://github.com/legibe/zuolib',
+      url='http://github.com/legibe/mogan',
       author='Claude Gibert',
       author_email='claude.gibert@gmail.com',
       license='MIT',
-      packages=['zuolib'],
+      packages=['mogan'],
       zip_safe=False,
       install_requires=[
           'PyYAML',

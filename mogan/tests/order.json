@@ -1,0 +1,74 @@
+{
+    "subscribes": [
+    {
+      "Account": {
+        "AutoPay": false,
+        "Batch": "Batch1",
+        "BillCycleDay": 1,
+        "Currency": "GBP",
+        "Name": ": "<first_name> <last_name>",
+        "PaymentTerm": "<payment_term>",
+        "Status": null
+      },
+      "BillToContact": {
+        "Address1": "<address1>",
+        "City": "<city>",
+        "Country": "<country>",
+        "FirstName": "<first_name>",
+        "LastName": "<last_name>",
+        "PersonalEmail": "<email>",
+        "PostalCode": "<post_code>"
+      },
+      "PaymentMethod": {
+        "CreditCardAddress1": "address1",
+        "CreditCardCity": "<city>",
+        "CreditCardCountry": "<country>",
+        "CreditCardExpirationMonth": "<expiry_month>",
+        "CreditCardExpirationYear": "<expiry_year",
+        "CreditCardHolderName": "<first_name> <last_name>",
+        "CreditCardNumber": "4242424242424242424242",
+        "CreditCardPostalCode": "<post_code>",
+        "CreditCardType": "<credit_card_type>",
+        "Type": "CreditCard"
+      },
+      "PreviewOptions": {
+        "EnablePreviewMode": false,
+        "NumberOfPeriods": 3
+      },
+      "SubscribeOptions": {
+        "GenerateInvoice": true,
+        "ProcessPayments": true,
+        "SubscribeInvoiceProcessingOptions": {}
+      },
+      "SubscriptionData": {
+        "RatePlanData": [
+          {
+            "RatePlan": {
+              "ProductRatePlanId": "<product_rate_plan_id>"
+            },
+            "RatePlanChargeData": [
+              {
+                "RatePlanCharge": {
+                  "ProductRatePlanChargeId": "<product_rate_plan_charge_id>"
+                }
+              }
+            ]
+          }
+        ],
+        "Subscription": {
+          "AutoRenew": false,
+          "ContractAcceptanceDate": "<start_date>",
+          "ContractEffectiveDate": "<start_date>",
+          "InitialTerm": 12,
+          "Name": "S_TEST_<test_counter>",
+          "Notes": "This is a test subscription",
+          "RenewalTerm": 12,
+          "ServiceActivationDate": "<start_date>",
+          "TermStartDate": "<start_date>",
+          "TermType": "TERMED",
+          "AutoRenew__c": "<auto_renew>"
+        }
+      }
+    }
+  ]
+}
