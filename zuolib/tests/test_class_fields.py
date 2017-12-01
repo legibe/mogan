@@ -7,7 +7,7 @@ from ..zuora.class_fields import ClassFields
 class TestClassFields(unittest.TestCase):
     
     def setUp(self):
-        self._session = session = ZAPI(YAMLCredentials('.creds', 'zuora', 'dev'))
+        self._session = ZAPI(YAMLCredentials('.creds', 'zuora', 'dev'))
     
     def test_get_fields(self):
         describe = ClassFields(self._session, 'Subscription')
