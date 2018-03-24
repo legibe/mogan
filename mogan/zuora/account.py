@@ -9,6 +9,8 @@ an account object from a cmd_id or an account_number.
 
 class Account(ZuoraObject):
 
+    _class_name = 'Account'
+
     @classmethod
     def account_from_crm_id(cls, session, crm_id):
         result = session.query("Select Id from %s where crmid like '%s%%'" % (cls.class_name, crm_id))

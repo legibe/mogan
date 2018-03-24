@@ -55,7 +55,7 @@ class ZAPI(object):
         body = {'queryString': query_string}
         r = self.post(self._base % 'action/query', body=body)
         if r.status_code >= 300:
-            raise ZAPIError(r.status_code, '%s - %s' % (r.reason, body['query_string']))
+            raise ZAPIError(r.status_code, '%s - %s' % (r.reason, body['queryString']))
         return r.json()
 
     def query_more(self, query_result):

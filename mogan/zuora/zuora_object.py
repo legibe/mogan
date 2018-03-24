@@ -41,7 +41,7 @@ class ZuoraObject(dict):
             self[k] = i
 
     def read(self, identifier):
-        result = self._session.get_object(identifier, 'object/%s' % self._class_name())
+        result = self._session.get_object(identifier, 'object/%s' % self.class_name())
         # the previous raises an exception if something went wrong
         # so the following code is not executed in that case, that
         # the object keeps empty.
@@ -62,7 +62,5 @@ class ZuoraObject(dict):
 
     @classmethod
     def class_name(cls):
-        if cls._class_name is None:
-            cls._class_name = cls.__class__.__name_
         return cls._class_name
 

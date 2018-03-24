@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 class Subscription(ZuoraObject):
 
-    class_name = 'Subscription'
+    _class_name = 'Subscription'
 
     def __init__(self, session, identifier=None, name=None):
         if identifier is None:
@@ -15,7 +15,7 @@ class Subscription(ZuoraObject):
         super(Subscription, self).__init__(session, identifier)
 
     def id_from_name(self, session, name):
-        result = session.query("Select Id from %s where Name='%s'" % (self.class_name, name))
+        result = session.query("Select Id from %s where Name='%s'" % (self.class_name(), name))
         if 'records' not in result or not len(result['records']):
             return None
         return result['records'][0]['Id']
@@ -38,3 +38,4 @@ class Subscription(ZuoraObject):
 
     def payment_id(self):
         pass
+

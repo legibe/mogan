@@ -95,3 +95,27 @@ def big_number_short(value):
     v = str(value)
     v = v.replace('.0', '')
     return v + abbreviations[i]
+
+
+def substitute_string_from_dict(a, variables):
+    """Substitutes variables of the form ${varname} with
+    values provided in a dictionary
+    """
+    if isinstance(a, str):
+        variable_names = re.findall('\${(.*?)}', a)
+        for var in variable_names:
+            if var in variables:
+                a = re.sub('\${%s}' % var, variables[var], a)
+    return a
+
+
+def substitute_structure_from_dict(a, variables):
+    if isinstance(a, dict):
+        for key, item in a.items():
+            a[key] = substitute_structure_from_dict(item, variables)
+    elif isinstance(a, list):
+        for i, item in enumerate(a):
+            a[i] = substitute_structure_from_dict(item, variables)
+    else:
+        a = substitute_string_from_dict(a, variables)
+    return a
