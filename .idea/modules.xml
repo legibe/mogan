@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/mogan.iml" filepath="$PROJECT_DIR$/.idea/mogan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../scratch/usage/.idea/usage.iml" filepath="$PROJECT_DIR$/../../scratch/usage/.idea/usage.iml" />
     </modules>
   </component>
 </project>
