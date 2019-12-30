@@ -15,8 +15,9 @@ class CSVReader(object):
         encoding = encoding.lower()
         if encoding == 'utf-8':
             with open(filename, 'rb') as f:
-                header = list(f.read(2))
-                if header[0] == 0xFF and header[1] == 0xFE:
+                prefix = list(f.read(2))
+                # UTF-16 prefix is FFFE
+                if prefix[0] == 0xFF and prefix[1] == 0xFE:
                     encoding = 'utf-16'
         return encoding
 
