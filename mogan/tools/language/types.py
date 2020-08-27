@@ -73,6 +73,10 @@ class PyDateTime(object):
         v = Second(value)
         return v.datetime()
 
+class PyDate(object):
+    def __new__(cls, value):
+        # will issue an exception if the date is not valid
+        return Day(value)
 
 class Boolean(object):
     def __new__(cls, value):
@@ -91,6 +95,7 @@ class Boolean(object):
 Types.register('price', Price)
 Types.register('volume', Volume)
 Types.register('datetime', DateTime)
+Types.register('py_date', PyDate)
 Types.register('formatted_datetime', FormattedDateTime)
 Types.register('formatted_day', FormattedDateNoTime)
 Types.register('py_datetime', PyDateTime)

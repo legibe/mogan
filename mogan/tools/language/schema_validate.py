@@ -83,7 +83,7 @@ class SchemaValidate(object):
             'show_in_help': True,
             'type': list
         },
-        'cloneinto': {
+        'clone_into': {
             'required': False,
             'type': list
         },

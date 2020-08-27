@@ -2,6 +2,7 @@
 # Author: Claude Gibert
 #
 #--------------------------------------------------------------------------------
+import copy
 from ..basic import make_list, no_list, is_sequence_and_not_string
 from .schema_reader import SchemaReader
 from .validate import Validate
@@ -49,9 +50,9 @@ class Language(object):
                 for ex in s[key]['excludes']:
                     excluded.add(ex)
                 excludes.append(excluded)
-            if 'cloneinto' in s[key]:
+            if 'clone_into' in s[key]:
                 targets = []
-                for target in s[key]['cloneinto']:
+                for target in s[key]['clone_into']:
                     if not target in request:
                         targets.append(target)
                 cloning[key] = targets
@@ -105,7 +106,7 @@ class Language(object):
             if "type" in s[k]:
                 request[k] = self.createType(s[k]["type"],request[k])
             if 'validate' in s[k]:
-                assert(Validate.isRegistered(s[k]['validate'][0]))
+                assert(Validate.is_registered(s[k]['validate'][0]))
                 f = Validate.create(s[k]['validate'][0],*s[k]['validate'][1:])
                 request[k] = f(self._schemaNames,k,request[k],request)
 
@@ -235,6 +236,8 @@ class Language(object):
         if isinstance(request,dict):
             s = self._schema
             result = {}
+            result = copy.deepcopy(request)
+            result.clear()
             for k, i in request.items():
                 if not k in s:
                     result[findOriginal(s,k)] = i
