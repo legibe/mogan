@@ -1,18 +1,17 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
-setup(name='mogan',
+packages = find_packages(where='.')
+print(packages)
+setup(
+      name='mogan',
+      packages=packages,
       version='0.1',
-      description='Wrapper Zuora API wrapper with goodies',
+      description='Utilities',
       url='http://github.com/legibe/mogan',
       author='Claude Gibert',
       author_email='claude.gibert@gmail.com',
       license='MIT',
-      packages=['mogan'],
-      zip_safe=False,
       install_requires=[
           'PyYAML',
-          'requests'
-      ],
-      test_suite='nose.collector',
-      test_requires=['nose']
+      ]
 )

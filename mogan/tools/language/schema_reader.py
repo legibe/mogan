@@ -2,6 +2,7 @@
 # Author: Claude Gibert
 #
 # --------------------------------------------------------------------------------
+import os.path
 from ..factory import create_factory
 from .schema_validate import SchemaValidate
 
@@ -17,10 +18,11 @@ class SchemaReader(SchemaReaderFactory):
             return cls.cache[name]
 
         filename = '%s.%s' % (name, extension)
+        filename = os.path.join(fullpath, '%s.%s' % (name, extension))
         reader = SchemaReaderFactory.create(extension)
         # we take the first one, if more than one was found, we assume that
         # the first one is the one to use
-        schema = reader.read(paths[0])
+        schema = reader.read(filename)
         for s in schema:
             cls.cache[s['schema']] = s
             SchemaValidate.validate(s)

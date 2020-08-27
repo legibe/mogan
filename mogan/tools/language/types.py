@@ -4,6 +4,7 @@
 # --------------------------------------------------------------------------------
 import re
 import sys
+import builtins
 from ..factory import create_factory
 from ..date import Second, Day
 from ..basic import big_number
@@ -19,7 +20,7 @@ class Types(factory):
         try:
             result = super(Types, cls).create(name, *args, **kwargs)
         except IndexError:
-            result = getattr(sys.modules['__builtin__'], name)(*args, **kwargs)
+            result = getattr(builtins, name)(*args, **kwargs)
         return result
 
 

@@ -2,10 +2,10 @@
 # Author: Claude Gibert
 #
 #--------------------------------------------------------------------------------
-from ..core.basic import make_list, no_list, is_sequence_and_not_string, is_sequence_and_not_string
-from schemareader import SchemaReader
-from validate import Validate
-from types import Types
+from ..basic import make_list, no_list, is_sequence_and_not_string
+from .schema_reader import SchemaReader
+from .validate import Validate
+from .types import Types
 
 class Language(object):
 

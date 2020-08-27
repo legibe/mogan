@@ -2,4 +2,4 @@
 # Author: Claude Gibert
 #
 # --------------------------------------------------------------------------------
-from .jsonreader import JSONReader
+from .json_reader import JSONReader

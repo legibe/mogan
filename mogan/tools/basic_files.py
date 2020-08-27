@@ -54,7 +54,7 @@ def mkdir(directory):
 
 class FileWatcher(object):
     """
-    Watches a file and when being polles, returns True if the file was
+    Watches a file and when being polled, returns True if the file was
     modified since the object was created.
     """
     def __init__(self, file):

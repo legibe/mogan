@@ -3,6 +3,7 @@
 #
 # --------------------------------------------------------------------------------
 import re
+from collections import Sequence
 
 
 def is_list(a):
@@ -119,3 +120,17 @@ def substitute_structure_from_dict(a, variables):
     else:
         a = substitute_string_from_dict(a, variables)
     return a
+
+def is_sequence_and_not_string(a):
+    return isinstance(a,Sequence) and not isinstance(a, str)
+
+def no_list(a): 
+    if is_list(a):
+        a = a[0]
+    return a
+
+def make_list(a):
+    if not is_list(a):
+        a = [a]
+    return a
+

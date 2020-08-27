@@ -3,8 +3,9 @@ from collections import OrderedDict
 
 class CSVReader(object):
 
-    def __init__(self, filename, index_name=None, quotechar='"', encoding='utf-8', delimiter=','):
-        encoding = self.get_encoding(filename, encoding)
+    def __init__(self, filename, index_name=None, quotechar='"', encoding=None, delimiter=','):
+        if encoding is None:
+            encoding = self.get_encoding(filename, encoding)
         self._header = None
         self._row_count = 0
         self._index_name = index_name
@@ -12,13 +13,15 @@ class CSVReader(object):
         self._reader = csv.reader(csv_file, delimiter=delimiter, quotechar='"')
 
     def get_encoding(self, filename, encoding):
-        encoding = encoding.lower()
-        if encoding == 'utf-8':
-            with open(filename, 'rb') as f:
-                prefix = list(f.read(2))
+        with open(filename, 'rb') as f:
+            prefix = list(f.read(2))
+            if prefix[0] == 0xFF and prefix[1] == 0xFF:
+                encoding = 'utf-8'
                 # UTF-16 prefix is FFFE
-                if prefix[0] == 0xFF and prefix[1] == 0xFE:
+            elif prefix[0] == 0xFF and prefix[1] == 0xFE:
                     encoding = 'utf-16'
+            else:
+                encoding = 'latin 1'
         return encoding
 
     def __call__(self):

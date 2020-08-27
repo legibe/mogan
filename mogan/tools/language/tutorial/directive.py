@@ -1,5 +1,5 @@
 import os
-from platin.language.language import Language
+from mogan.language.language import Language
 
 class Directive(dict):
 
@@ -14,7 +14,7 @@ class Directive(dict):
     def validate(self):
         l = Language(self._schema,self._schema_path)
         for k,i in self.items():
-            if isinstance(i,Directive):
+            if isinstance(i, Directive):
                 i.validate()
         new = l.validate(self)
         self.clear()
