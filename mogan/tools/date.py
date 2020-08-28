@@ -449,14 +449,14 @@ def date_sequence(*args, **kwargs):
                 if fmt:
                     result.append(begin.format(fmt))
                 else:
-                    result.append(begin.intvalue())
+                    result.append(begin.int_value())
                 begin += increment
         else:
             while begin >= end:
                 if fmt:
                     result.append(begin.format(fmt))
                 else:
-                    result.append(int(begin.intvalue()))
+                    result.append(int(begin.int_value()))
                 begin += increment
     return result
 

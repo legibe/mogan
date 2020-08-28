@@ -76,7 +76,7 @@ class Language(object):
                 if len(r) > 0:
                     raise ValueError('In "%s", at least one of "%s" is required' % (self._name,', '.join(group)))
             elif len(v) > 1:
-                    raise ValueError('In "%s", only one of "%s" is required, your specifed "%s"' % (self._name,', '.join(group), ', '.join(v)))
+                    raise ValueError('In "%s", only one of "%s" is required, you specifed "%s"' % (self._name,', '.join(group), ', '.join(v)))
 
         # deal with lists and non-lists
         # also expand sub-schemas
